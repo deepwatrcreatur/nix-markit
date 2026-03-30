@@ -24,7 +24,7 @@ let
 
     outputHashMode = "flat";
     outputHashAlgo = "sha256";
-    outputHash = "sha256-QIMkABqnw0u5E2jwbGM2sh1crZ6u+1snVlRTz7zSSqs=";
+    outputHash = "sha256-vrkluGNkZuutqZ/Z+SFjfrpYgLZsLJ1Ck/BA9KdCEW4=";
 
     nativeBuildInputs = [ nodejs jq cacert ];
 
