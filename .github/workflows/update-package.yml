@@ -21,7 +21,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Update package
-        run: nix shell nixpkgs#curl nixpkgs#jq nixpkgs#nix-update nixpkgs#nodejs_24 -c ./scripts/update-package
+        run: nix shell nixpkgs#curl nixpkgs#git nixpkgs#jq nixpkgs#nix-update nixpkgs#nodejs_24 -c ./scripts/update-package
 
       - name: Build package
         run: nix build .#markit
