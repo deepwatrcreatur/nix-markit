@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+nix-update markit --flake --version=stable --use-github-releases
+
+version="$(nix eval .#markit.version --raw)"
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+
+curl -fsSL "https://raw.githubusercontent.com/Michaelliv/markit/v${version}/package.json" \
+  -o "$tmpdir/package.json"
+
+jq 'del(.devDependencies["@biomejs/biome"])' "$tmpdir/package.json" > package.json
+npm install --package-lock-only --ignore-scripts
